@@ -1,0 +1,16 @@
+[requires]
+fmt/8.1.1                   # Use the version compatible with spdlog
+openssl/1.1.1s              # Cryptographic library
+boost/1.78.0                # Updated Boost version
+zlib/1.2.12                 # Compression library
+libcurl/7.85.0              # HTTP client library
+spdlog/1.10.0               # Logging library compatible with fmt 8.1.1
+poco/1.11.1                 # Networking and utilities library
+gtest/1.12.1                # Google Test for unit testing
+
+[options]
+spdlog/*:fmt_external=True  # Specify full package option
+
+[generators]
+cmake
+
