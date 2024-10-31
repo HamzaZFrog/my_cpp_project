@@ -2,12 +2,19 @@
 #include <iostream>
 #include <fmt/core.h>
 #include <openssl/ssl.h>
-#include <boost/algorithm/string.hpp>
 #include <zlib.h>
 #include <curl/curl.h>
 #include <spdlog/spdlog.h>
 #include <Poco/Net/HTTPClientSession.h>
+#include <Poco/Net/HTTPRequest.h>
+#include <Poco/Net/HTTPResponse.h>
 #include <gtest/gtest.h>
+#include <algorithm>
+
+// Function to convert string to uppercase (replaces Boost functionality)
+void to_upper(std::string& str) {
+    std::transform(str.begin(), str.end(), str.begin(), ::toupper);
+}
 
 // Function using zlib to compress a string
 std::string compressString(const std::string& str) {
@@ -23,9 +30,9 @@ int main() {
     spdlog::info("Hello, Conan + Artifactory with multiple dependencies!");
     std::string example = "This is a test string for compression.";
 
-    // Use Boost to manipulate a string
-    boost::to_upper(example);
-    spdlog::info("Boost transformed string: {}", example);
+    // Convert string to uppercase without Boost
+    to_upper(example);
+    spdlog::info("Transformed string: {}", example);
 
     // Compress string using zlib
     std::string compressed = compressString(example);
@@ -61,4 +68,3 @@ int main() {
 
     return 0;
 }
-
